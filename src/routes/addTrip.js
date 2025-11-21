@@ -6,7 +6,7 @@ module.exports = (app) => {
   app.post('/api/trip', authenticateToken, isAdmin, (req, res) => {
     Trip.create(req.body)
       .then(trip => {
-        const message = `Le voyage ${req.body.nom} a bien été crée.`
+        const message = `Le voyage ${req.body.name} a bien été crée.`
         res.json({ message, data: trip })
       })
       .catch(error => {
