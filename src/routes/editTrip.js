@@ -1,6 +1,6 @@
 const {Trip} = require('../models/trip')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
-const { authenticateToken, isAdmin, isClient } = require('./auth.middleware');
+const { authenticateToken, isAdmin, isClient } = require('../auth/middleware');
 
 module.exports = (app) => {
   app.put('/api/trip/:id', authenticateToken, isAdmin,(req, res) => {
