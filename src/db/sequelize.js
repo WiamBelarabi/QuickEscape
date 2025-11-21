@@ -23,7 +23,7 @@ const initDb = async () => {
 
         if (!adminExists) {
         const admin = await User.create({
-            username: 'admin',
+            username: 'Wiam',
             password: bcrypt.hashSync('admin', 10),
             role: 'admin'
         });
