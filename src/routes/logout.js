@@ -1,4 +1,4 @@
-const tokenBlacklist = require('./tokenBlacklist');
+const tokenBlacklist = require('../auth/tokenBlacklist');
 
 module.exports = (app) => {
   app.post('/api/logout', (req, res) => {
