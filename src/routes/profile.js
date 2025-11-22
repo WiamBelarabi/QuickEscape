@@ -1,5 +1,5 @@
 const { User } = require('../db/sequelize');
-const { authenticateToken, isAdmin, isClient } = require('./auth.middleware');
+const { authenticateToken, isAdmin, isClient } = require('../auth/middleware');
 const bcrypt = require('bcrypt');
 
 module.exports = (app) => {

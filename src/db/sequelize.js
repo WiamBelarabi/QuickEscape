@@ -29,7 +29,8 @@ const initDb = async () => {
         const admin = await User.create({
             username: 'Wiam',
             password: bcrypt.hashSync('admin', 10),
-            role: 'admin'
+            role: 'admin',
+            email : 'wiambelarabi10@gmail.com'
         });
         console.log(`Utilisateur par défaut créé : ${admin.username} (${admin.role})`);
         } else {
