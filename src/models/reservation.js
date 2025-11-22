@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 isUrl: { msg: 'Utilisez uniquement une URL valide pour le ticket PDF.' }
             }
+        },
+        seats:{
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     })
 }
