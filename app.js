@@ -20,6 +20,14 @@ app.get('/', (req, res) => {
 // Importer les routes
 require('./src/routes/login')(app);
 require('./src/routes/logout')(app);
+require('./src/routes/signup')(app);
+require('./src/routes/addTrip')(app);
+require('./src/routes/editTrip')(app);
+require('./src/routes/deleteTrip')(app);
+require('./src/routes/findTrip')(app);
+require('./src/routes/tripDetails')(app);
+require('./src/routes/reserve')(app);
+require('./src/routes/findReservations')(app);
 // On gère les routes 404.
 app.use(({res}) => {
   const message = 'Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'

@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt')
 const UserModel = require('../models/user')
+const TripModel = require('../models/trip')
+const ReservationModel = require('../models/reservation')
 
 const sequelize = new Sequelize('quickescape', 'root', '', {
     host: 'localhost',
@@ -12,6 +14,8 @@ sequelize.authenticate()
     .catch(err => console.error('Impossible de se connecter à la base de données :', err));
 
 const User = UserModel(sequelize, DataTypes);
+const Trip = TripModel(sequelize, DataTypes);
+const Reservation = ReservationModel(sequelize, DataTypes);
 
 const initDb = async () => {
     try {
@@ -38,5 +42,7 @@ const initDb = async () => {
 
 module.exports = {
     initDb,
-    User
+    User,
+    Trip,
+    Reservation
 };

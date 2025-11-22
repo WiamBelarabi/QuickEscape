@@ -1,4 +1,4 @@
-const {Trip} = require('../models/trip')
+const { Trip } = require('../db/sequelize');
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const { authenticateToken, isAdmin, isClient } = require('../auth/middleware');
 

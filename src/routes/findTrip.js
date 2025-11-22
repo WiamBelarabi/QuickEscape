@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const {Trip} = require('../models/trip')
+const { Trip } = require('../db/sequelize');
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const { authenticateToken, isAdmin, isClient } = require('../auth/middleware');
 // code renvoie la liste des voyage ou ceux qui correspondent à une recherche par nom

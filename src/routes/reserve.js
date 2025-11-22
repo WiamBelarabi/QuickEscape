@@ -1,6 +1,6 @@
-const { Trip } = require('../models/trip');
-const { Reservation } = require('../models/reservation');
-const { authenticateToken, isClient } = require('../auth/middleware');
+const { Reservation } = require('../db/sequelize')
+const { Trip } = require('../db/sequelize')
+const { authenticateToken, isClient } = require('../auth/middleware')
 
 module.exports = (app) => {
     app.post('/api/trip/:id/reserve', authenticateToken, isClient, async (req, res) => {

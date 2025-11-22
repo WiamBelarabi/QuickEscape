@@ -1,6 +1,6 @@
-const {Trip} = require('../models/trip')
+const { Trip } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
-const { authenticateToken } = require('../auth/middleware');
+const { authenticateToken } = require('../auth/middleware')
 
 module.exports = (app) => {
   app.get('/api/trip/:id', authenticateToken, async (req, res) => {
