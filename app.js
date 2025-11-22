@@ -29,6 +29,7 @@ require('./src/routes/tripDetails')(app);
 require('./src/routes/reserve')(app);
 require('./src/routes/findReservations')(app);
 require('./src/routes/adminFindReservation')(app);
+require('./src/routes/profile')(app);
 // On gère les routes 404.
 app.use(({res}) => {
   const message = 'Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'

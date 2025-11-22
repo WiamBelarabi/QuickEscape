@@ -17,6 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     role :{
         type: DataTypes.ENUM('client', 'admin'),   // valeurs possibles
         defaultValue: 'client'      
-    }
+    },
+    email: {
+        type: DataTypes.STRING,
+        unique: {
+            msg: 'L\'email est déjà utilisé.'
+        },
+        validate: {
+            isEmail: {msg: 'Le format de l\'email est invalide.'}
+        }
+    } 
   })
 }
