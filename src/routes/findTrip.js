@@ -4,7 +4,7 @@ const { ValidationError, UniqueConstraintError } = require('sequelize')
 const { authenticateToken, isAdmin, isClient } = require('../auth/middleware');
 // code renvoie la liste des voyage ou ceux qui correspondent à une recherche par nom
 module.exports = (app) => {
-  app.get('/api/trip', authenticateToken, isAdmin, isClient, (req, res) => {
+  app.get('/api/trip', authenticateToken, (req, res) => {
     if(req.query.name) {
       const name = req.query.name
       return Trip.findAndCountAll({ 
