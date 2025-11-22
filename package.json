@@ -1,0 +1,32 @@
+{
+  "name": "quickescape",
+  "version": "1.0.0",
+  "description": "App for travel reservations",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WiamBelarabi/QuickEscape.git"
+  },
+  "author": "wiam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WiamBelarabi/QuickEscape/issues"
+  },
+  "homepage": "https://github.com/WiamBelarabi/QuickEscape#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mariadb": "^3.4.5",
+    "sequelize": "^6.37.7",
+    "serve-favicon": "^2.5.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.11"
+  }
+}
