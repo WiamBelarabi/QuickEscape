@@ -1,0 +1,23 @@
+﻿<%- include('partials/head', { title, page }) %>
+<%- include('partials/nav') %>
+<main class="container">
+  <section class="page-head">
+    <h1>Trip details</h1>
+    <p class="muted">Review the trip and reserve your seats.</p>
+  </section>
+
+  <section class="panel">
+    <div id="tripDetails" data-trip-id="<%= tripId %>"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Reserve seats</h2>
+    <form id="reserveForm" class="form">
+      <label for="reserveSeats">Number of seats</label>
+      <input id="reserveSeats" name="seats" type="number" min="1" value="1" required>
+      <button class="button primary" type="submit">Reserve</button>
+      <div id="reserveStatus" class="status"></div>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer', { pageScript }) %>

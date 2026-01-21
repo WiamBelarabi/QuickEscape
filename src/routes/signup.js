@@ -6,7 +6,7 @@ const privateKey = require('../auth/private_key');
 module.exports = (app) => {
   app.post('/api/signup', async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { username, email, password } = req.body;
       // vérifier si l'utilisateur existe déjà
       const existingUser = await User.findOne({ where: { username } });
       if (existingUser) {
@@ -17,6 +17,7 @@ module.exports = (app) => {
       // créer l'utilisateur, rôle par défaut = client
       const newUser = await User.create({
         username,
+        email,
         password: hashedPassword,
         role: 'client'
       });

@@ -1,0 +1,29 @@
+﻿<%- include('partials/head', { title, page }) %>
+<%- include('partials/nav') %>
+<main class="container hero">
+  <section class="hero-card">
+    <p class="eyebrow">QuickEscape</p>
+    <h1>Plan, reserve, and manage travel in one calm dashboard.</h1>
+    <p class="lead">Search curated trips, reserve seats in seconds, and track everything from your profile.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="/signup">Create account</a>
+      <a class="button ghost" href="/trips">Browse trips</a>
+    </div>
+    <p id="heroUser" class="hint"></p>
+  </section>
+  <section class="feature-grid">
+    <div class="card">
+      <h3>Fast reservations</h3>
+      <p>Lock in seats with a clear price breakdown and instant confirmation.</p>
+    </div>
+    <div class="card">
+      <h3>Trip clarity</h3>
+      <p>See dates, budgets, and descriptions before you commit.</p>
+    </div>
+    <div class="card">
+      <h3>Admin control</h3>
+      <p>Manage trips and reservations from a single view.</p>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer', { pageScript }) %>

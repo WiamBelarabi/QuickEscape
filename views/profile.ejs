@@ -1,0 +1,27 @@
+﻿<%- include('partials/head', { title, page }) %>
+<%- include('partials/nav') %>
+<main class="container">
+  <section class="page-head">
+    <h1>Profile</h1>
+    <p class="muted">Update your account details.</p>
+  </section>
+
+  <section class="panel">
+    <div id="profileInfo" class="profile-card"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Update profile</h2>
+    <form id="profileForm" class="form">
+      <label for="profileUsername">Username</label>
+      <input id="profileUsername" name="username" type="text" autocomplete="username">
+
+      <label for="profilePassword">New password</label>
+      <input id="profilePassword" name="password" type="password" autocomplete="new-password">
+
+      <button class="button primary" type="submit">Save changes</button>
+      <div id="profileStatus" class="status"></div>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer', { pageScript }) %>

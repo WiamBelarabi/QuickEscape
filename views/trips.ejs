@@ -1,0 +1,21 @@
+﻿<%- include('partials/head', { title, page }) %>
+<%- include('partials/nav') %>
+<main class="container">
+  <section class="page-head">
+    <h1>Trips</h1>
+    <p class="muted">Search and explore available destinations.</p>
+  </section>
+
+  <section class="panel">
+    <form id="searchForm" class="form inline">
+      <label for="searchInput">Search by name</label>
+      <input id="searchInput" name="name" type="text" placeholder="Beach, city, adventure...">
+      <button class="button" type="submit">Search</button>
+      <button class="button ghost" type="button" id="clearSearch">Clear</button>
+    </form>
+  </section>
+
+  <section id="tripsList" class="card-grid"></section>
+  <div id="tripsMsg" class="status"></div>
+</main>
+<%- include('partials/footer', { pageScript }) %>

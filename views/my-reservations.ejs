@@ -1,0 +1,12 @@
+﻿<%- include('partials/head', { title, page }) %>
+<%- include('partials/nav') %>
+<main class="container">
+  <section class="page-head">
+    <h1>My reservations</h1>
+    <p class="muted">Track your upcoming trips.</p>
+  </section>
+
+  <section id="reservationsList" class="stack"></section>
+  <div id="reservationsMsg" class="status"></div>
+</main>
+<%- include('partials/footer', { pageScript }) %>
