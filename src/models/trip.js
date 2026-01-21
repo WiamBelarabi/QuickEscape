@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isUrl: { msg: 'Utilisez uniquement une URL valide pour l\'image.' },
-                notNull: { msg: 'L\'image est une propriété requise.'}
+                notNull: { msg: "l'image est requise" },
+                notEmpty: { msg: "l'image est requise" }
             }
         },
         place_restante :{
