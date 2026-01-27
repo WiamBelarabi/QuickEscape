@@ -6,6 +6,55 @@
   const status = document.getElementById('adminTripsStatus');
   const form = document.getElementById('tripForm');
   const cancelBtn = document.getElementById('tripCancel');
+  const photoFileInput = document.getElementById('tripPhotoFile');
+  const photoInput = document.getElementById('tripPhoto');
+  const photoPreview = document.getElementById('tripPhotoPreview');
+
+  let photosData = [];
+
+  function normalizePhotos(value) {
+    if (Array.isArray(value)) return value.filter(Boolean);
+    if (typeof value === 'string' && value.trim() !== '') return [value.trim()];
+    return [];
+  }
+
+  function updatePhotoPreview(src) {
+    if (!photoPreview) return;
+    if (src) {
+      photoPreview.src = src;
+      photoPreview.style.display = 'block';
+    } else {
+      photoPreview.removeAttribute('src');
+      photoPreview.style.display = 'none';
+    }
+  }
+
+  function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Unable to read the selected image.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function handlePhotoSelection() {
+    const files = photoFileInput.files ? Array.from(photoFileInput.files) : [];
+    if (!files.length) return;
+
+    try {
+      const dataUrls = await Promise.all(files.map(readFileAsDataURL));
+      photosData = dataUrls.map((d) => String(d)).filter((d) => d.trim() !== '');
+      photoInput.value = JSON.stringify(photosData);
+      updatePhotoPreview(photosData[0]);
+      status.textContent = '';
+    } catch (err) {
+      photosData = [];
+      photoInput.value = '';
+      updatePhotoPreview('');
+      status.textContent = err.message;
+    }
+  }
 
   function getFormData() {
     return {
@@ -14,7 +63,7 @@
       budget: Number(document.getElementById('tripBudget').value),
       date_depart: document.getElementById('tripDepart').value,
       date_retour: document.getElementById('tripReturn').value,
-      photo: document.getElementById('tripPhoto').value.trim(),
+      photo: photosData,
       place_restante: Number(document.getElementById('tripSeats').value),
       description: document.getElementById('tripDescription').value.trim()
     };
@@ -22,6 +71,10 @@
 
   function resetForm() {
     form.reset();
+    photosData = [];
+    photoInput.value = '';
+    if (photoFileInput) photoFileInput.value = '';
+    updatePhotoPreview('');
     document.getElementById('tripId').value = '';
     document.getElementById('tripSubmit').textContent = 'Save trip';
     status.textContent = '';
@@ -66,7 +119,10 @@
           document.getElementById('tripBudget').value = trip.budget;
           document.getElementById('tripDepart').value = trip.date_depart ? trip.date_depart.slice(0, 10) : '';
           document.getElementById('tripReturn').value = trip.date_retour ? trip.date_retour.slice(0, 10) : '';
-          document.getElementById('tripPhoto').value = trip.photo;
+          photosData = normalizePhotos(trip.photo);
+          photoInput.value = JSON.stringify(photosData);
+          if (photoFileInput) photoFileInput.value = '';
+          updatePhotoPreview(photosData[0]);
           document.getElementById('tripSeats').value = trip.place_restante;
           document.getElementById('tripDescription').value = trip.description || '';
           document.getElementById('tripSubmit').textContent = 'Update trip';
@@ -91,11 +147,19 @@
     }
   }
 
+  photoFileInput.addEventListener('change', handlePhotoSelection);
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     status.textContent = '';
 
     const tripId = document.getElementById('tripId').value;
+
+    if (!photosData.length) {
+      status.textContent = "L'image est requise.";
+      return;
+    }
+
     const payload = getFormData();
 
     try {

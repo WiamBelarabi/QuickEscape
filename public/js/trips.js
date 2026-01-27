@@ -7,6 +7,12 @@
   const clearBtn = document.getElementById('clearSearch');
   const input = document.getElementById('searchInput');
 
+  function normalizePhotos(value) {
+    if (Array.isArray(value)) return value.filter(Boolean);
+    if (typeof value === 'string' && value.trim() !== '') return [value.trim()];
+    return [];
+  }
+
   async function loadTrips(query = '') {
     msg.textContent = 'Loading trips...';
     list.innerHTML = '';
@@ -25,7 +31,15 @@
       trips.forEach((trip) => {
         const card = document.createElement('div');
         card.className = 'card';
+
+        const photos = normalizePhotos(trip.photo);
+        const coverPhoto = photos[0];
+        const photoHtml = coverPhoto
+          ? `<img class="trip-photo" src="${coverPhoto}" alt="${trip.name}">`
+          : '';
+
         card.innerHTML = `
+          ${photoHtml}
           <h3>${trip.name}</h3>
           <div class="trip-meta">
             <div>Destination: ${trip.destination}</div>

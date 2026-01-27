@@ -26,8 +26,11 @@
       <label for="tripReturn">Return date</label>
       <input id="tripReturn" name="date_retour" type="date" required>
 
-      <label for="tripPhoto">Photo URL</label>
-      <input id="tripPhoto" name="photo" type="url" required>
+      <label for="tripPhotoFile">Photos</label>
+      <input id="tripPhotoFile" type="file" accept="image/*" multiple>
+      <input id="tripPhoto" name="photo" type="hidden" required>
+      <img id="tripPhotoPreview" alt="Photo preview" style="display:none;max-width:240px;border-radius:8px;">
+      <div class="hint">You can select multiple images. The first one is used as the cover.</div>
 
       <label for="tripSeats">Seats available</label>
       <input id="tripSeats" name="place_restante" type="number" required>

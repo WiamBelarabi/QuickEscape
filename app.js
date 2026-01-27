@@ -13,8 +13,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app
-  .use(bodyParser.json()) // Parse JSON request bodies
-  .use(bodyParser.urlencoded({ extended: false })) // Parse form bodies
+  .use(bodyParser.json({ limit: '50mb' })) // Parse JSON request bodies (larger limit for image uploads)
+  .use(bodyParser.urlencoded({ extended: false, limit: '10mb' })) // Parse form bodies
   .use(express.static(path.join(__dirname, 'public')))
   .use(favicon(__dirname = 'C:\\Users\\Mous\\Desktop\\projet tutor\\image.ico')) // Serve favicon
   .use(morgan('dev')); // Log requests to the console

@@ -8,12 +8,23 @@
   if (!details) return;
   const tripId = details.dataset.tripId;
 
+  function normalizePhotos(value) {
+    if (Array.isArray(value)) return value.filter(Boolean);
+    if (typeof value === 'string' && value.trim() !== '') return [value.trim()];
+    return [];
+  }
+
   async function loadTrip() {
     details.innerHTML = 'Loading trip details...';
     try {
       const response = await apiFetch(`/api/trip/${tripId}`);
       const trip = response.data;
+      const photos = normalizePhotos(trip.photo);
+      const photosHtml = photos.length
+        ? `<div class="trip-photo-stack">${photos.map((src, i) => `<img class="trip-photo" src="${src}" alt="${trip.name} photo ${i + 1}">`).join('')}</div>`
+        : '';
       details.innerHTML = `
+        ${photosHtml}
         <h2>${trip.name}</h2>
         <div class="trip-meta">
           <div>Destination: ${trip.destination}</div>
